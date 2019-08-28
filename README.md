@@ -1,28 +1,16 @@
 # Movie::Premier::Cli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/movie/premier/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This RUby gem provides a Command Line Interface(CLI) to view a listing of movie premiers per search results from the IMDB website.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'movie-premier-cli'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install movie-premier-cli
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the code below and follow the on screen prompts.
+
+    $ movie_premier_cli
 
 ## Development
 
