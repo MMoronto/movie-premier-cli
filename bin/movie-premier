@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Hello Folks!!!"
+require_relative '../lib/movie_premier'
 
-#require_relative '../lib/movie_premier'
-
-#MoviePremier::CLI.new.call
+MoviePremier::CLI.new.call
