@@ -31,7 +31,7 @@ class MoviePremier::Movie
 
   private
     def self.scrape_movie_premier
-      doc = Nokogiri::HTML(open('http://www.imdb.com/movies-coming-soon/'))
+      doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/?ref_=inth_cs'))
       names = doc.search("h4[itemprop='name'] a[itemprop='url']")
       names.collect{|e| new(e.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
     end
