@@ -5,7 +5,7 @@ require "movie_premier/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "movie-premier-cli"
-  spec.version       = Movie::Premier::Cli::VERSION
+  spec.version       = MoviePremier::VERSION
   spec.authors       = ["'MOBOLA MORONTO'"]
   spec.email         = ["'t2wycemo@gmail.com'"]
 
