@@ -33,7 +33,7 @@ class MoviePremier::CLI
     input = nil
     while input != "exit"
       puts ""
-      puts "What movie would you more information on, by name or number?"
+      puts "What movie would you like more information on? Search by name or number."
       puts ""
       puts "Enter list to see the movies again."
       puts "Enter exit to end the program."
