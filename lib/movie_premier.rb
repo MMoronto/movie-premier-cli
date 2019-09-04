@@ -1,5 +1,5 @@
 require 'open-uri'
-#require 'pry'
+require 'pry'
 require 'nokogiri'
 
 require_relative "movie_premier/version"
