@@ -22,17 +22,18 @@ class MoviePremier::Movie
   end
   
   def summary
-    @summary ||= plot_summary_doc.search("td.overview-top div.outline").text.strip
+    @summary ||= plot_summary_doc.search("#plot-summaries-content p").text
   end
 
   def stars
-    @stars ||= doc.search("#titleCast span[itemprop='name']").collect{|e| e.text.strip}.join(", ")
+    @stars ||= doc.search("div.txt-block").collect{|e| e.text.strip}.join(", ")
   end
 
   private
     def self.scrape_movie_premier
-      doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/?ref_=inth_cs'))
-      names = doc.search("h4[itemprop='name'] a[itemprop='url']")
+      doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/?ref_=ft_cs'))
+      #binding.pry 
+      names = doc.search("h3[itemprop='name'] a[itemprop='url']")
       names.collect{|e| new(e.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
     end
 
