@@ -26,12 +26,12 @@ class MoviePremier::Movie
   end
 
   def stars
-    @stars ||= doc.search("div.txt-block").collect{|e| e.text.strip}.join(", ")
+    @stars ||= doc.search("#titleCast span[itemprop='name']").collect{|e| e.text.strip}.join(", ")
   end
 
   private
     def self.scrape_movie_premier
-      doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/?ref_=ft_cs'))
+      doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/'))
       #binding.pry 
       names = doc.search("h3[itemprop='name'] a[itemprop='url']")
       names.collect{|e| new(e.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
