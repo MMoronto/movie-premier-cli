@@ -22,7 +22,7 @@ class MoviePremier::Movie
   end
   
   def summary
-    @summary ||= plot_summary_doc.search("#plot-summaries-content p").text
+    @summary ||= plot_summary_doc.search("div.outline").text
   end
 
   def stars
@@ -32,7 +32,7 @@ class MoviePremier::Movie
   private
     def self.scrape_movie_premier
       doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/'))
-      #binding.pry 
+      binding.pry 
       names = doc.search("h3[itemprop='name'] a[itemprop='url']")
       names.collect{|e| new(e.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
     end
