@@ -27,27 +27,34 @@ class MoviePremier::Movie
   def self.find(id)
     self.all[id-1]
   end
+  
+  #def self.find_by_name(name)
+    #self.all.detect do |m|
+      #m.name.downcase.strip == name.downcase.strip ||
+      #m.name.split("(").first.strip.downcase == name.downcase.strip
+    #end
+  #end
 
   def name 
-    @name ||= doc.css("h4 a.").text 
+    @name ||= doc.search("td.overview-top h4 a").text 
   end
   
   def url 
-    @url ||= doc.css("https://www.imdb.com/movies-coming-soon/").text 
+    @url ||= doc.css("td.overview-top h4 a").attribute('href').value 
   end 
   
   def summary
-    @summary ||= doc.css("div.outline").text
+    @summary ||= doc.search("td.overview-top div.outline").text
   end
 
   def stars
-    @stars ||= doc.css("#titleCast span[itemprop='name']").collect{|e| e.text.strip}.join(", ")
+    @stars ||= doc.search("h5[itemprop='name'] a[itemprop='url']").collect{|e| e.text.strip}.join(", ")
   end
 
   def self.scrape_movie_premier
     doc = Nokogiri::HTML(open('https://www.imdb.com/movies-coming-soon/'))
-    #binding.pry 
-    names = doc.search("h3[itemprop='name'] a[itemprop='url']")
+    binding.pry 
+    names = doc.search("h5.inline #Stars[itemprop='name'] a[itemprop='url']")
     names.collect{|e| new(e.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
   end
 
