@@ -48,7 +48,7 @@ class MoviePremier::Movie
   end
 
   def stars
-    @stars ||= doc.search("h5[itemprop='name'] a[itemprop='url']").collect{|e| e.text.strip}.join(", ")
+    @stars ||= doc.search("h5.inline[itemprop='name'] a[itemprop='url']").attribute('href').value.collect{|e| e.text.strip}.join(", ")
   end
 
   def self.scrape_movie_premier
